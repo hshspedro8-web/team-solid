@@ -1,0 +1,73 @@
+===== style.css =====
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #e5e5e5;
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.menu-btn {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 65%;
+  height: 100vh;
+  background: #111;
+  padding: 30px 20px;
+  transition: 0.4s;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu a {
+  display: block;
+  margin: 15px 0;
+  text-decoration: none;
+  color: #aaa;
+}
+
+.side-menu a:hover {
+  color: #fff;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contador-box {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+}
