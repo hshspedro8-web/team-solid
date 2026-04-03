@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto IA</title>
+  <title>Last.fm Ranking Project</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,42 +13,64 @@
 <div class="side-menu" id="menu">
   <h2>Menu</h2>
   <a onclick="mostrar('home')">Início</a>
-  <a onclick="mostrar('rank-musicas')">Rank Músicas</a>
-  <a onclick="mostrar('rank-artistas')">Rank Artistas</a>
-  <a onclick="mostrar('perfil')">Perfil</a>
+  <a onclick="mostrar('rank-musicas')">Músicas</a>
+  <a onclick="mostrar('rank-artistas')">Artistas</a>
+  <a onclick="mostrar('perfil')">Meu Perfil</a>
 </div>
 
-<nav>
-  <div>PROJECT 01</div>
-</nav>
+<nav>PROJECT 01</nav>
 
-<!-- HOME -->
 <section id="home" class="aba ativa">
   <div class="contador-box">
     <h1 id="contador">Dia 1</h1>
   </div>
-  <p>Criando um site com IA.</p>
+  <p>Bem-vindo ao seu protótipo de Ranking!</p>
 </section>
 
-<!-- RANK MUSICAS -->
 <section id="rank-musicas" class="aba">
-  <h2>Ranking de Músicas</h2>
-  <ul id="lista-musicas"></ul>
+  <h2>Buscar Música</h2>
+  <div class="busca-container">
+    <input type="text" id="busca-musica" placeholder="Digite o nome da música...">
+    <button onclick="buscar('musica')">Pesquisar</button>
+  </div>
+  <div id="resultados-musica" class="grid-resultados"></div>
 </section>
 
-<!-- RANK ARTISTAS -->
 <section id="rank-artistas" class="aba">
-  <h2>Ranking de Artistas</h2>
-  <input type="text" id="busca" placeholder="Digite um artista...">
-  <button onclick="buscarArtista()">Buscar</button>
-  <ul id="resultado"></ul>
+  <div id="busca-artistas-tela">
+    <h2>Buscar Artista</h2>
+    <div class="busca-container">
+      <input type="text" id="input-artista" placeholder="Ex: Arctic Monkeys, The Weeknd...">
+      <button onclick="buscar('artista')">Pesquisar</button>
+    </div>
+    <div id="resultados-artista" class="grid-resultados"></div>
+  </div>
+
+  <div id="detalhe-ranking" style="display:none">
+    <button class="btn-voltar" onclick="voltarParaBusca()">← Voltar</button>
+    <div class="header-artista">
+      <img id="foto-foco" src="" alt="Artista">
+      <h1 id="nome-foco"></h1>
+    </div>
+    <hr class="divisor">
+    <ul id="lista-ranking-detalhado"></ul>
+  </div>
 </section>
 
-<!-- PERFIL -->
 <section id="perfil" class="aba">
-  <h2>Adicionar Perfil</h2>
-  <input type="text" id="nomeUsuario" placeholder="Seu nome">
-  <button onclick="adicionarUsuario()">Adicionar</button>
+  <div id="form-perfil">
+    <h2>Configurar Perfil</h2>
+    <input type="text" id="nomeUsuario" placeholder="Seu nome de usuário">
+    <input type="text" id="fotoUsuario" placeholder="Link de uma foto (URL)">
+    <button onclick="adicionarUsuario()">Criar Perfil</button>
+  </div>
+
+  <div id="dados-perfil" style="display:none" class="perfil-card-exibicao">
+    <h2>Seu Perfil</h2>
+    <img id="img-perfil-display" src="" alt="Sua Foto">
+    <h3 id="nome-perfil-display"></h3>
+    <button onclick="resetarPerfil()" style="background:#333; margin-top:20px;">Alterar Perfil</button>
+  </div>
 </section>
 
 <script src="script.js"></script>
