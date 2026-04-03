@@ -1,141 +1,35 @@
-<!DOCTYPE html><html lang="pt-BR">
+===== index.html =====
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projeto IA</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: #e5e5e5;
-}
-
-/* MENU */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.logo {
-  font-weight: 600;
-  letter-spacing: 2px;
-  font-size: 14px;
-  color: #aaa;
-}
-
-.menu {
-  display: flex;
-  gap: 25px;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #888;
-  font-size: 14px;
-  transition: 0.3s;
-  position: relative;
-}
-
-.menu a::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 1px;
-  bottom: -4px;
-  left: 0;
-  background: #fff;
-  transition: 0.3s;
-}
-
-.menu a:hover {
-  color: #fff;
-}
-
-.menu a:hover::after {
-  width: 100%;
-}
-
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.hero h1 {
-  font-size: 3em;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.hero p {
-  color: #777;
-  max-width: 500px;
-  margin-top: 10px;
-}
-
-/* SECTION */
-.section {
-  padding: 80px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.section h2 {
-  font-weight: 400;
-  margin-bottom: 10px;
-}
-
-.section p {
-  color: #aaa;
-}
-
-@media (max-width: 768px) {
-  .menu {
-    gap: 15px;
-  }
-
-  .hero h1 {
-    font-size: 2em;
-  }
-}
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body><nav>
-  <div class="logo">PROJECT 01</div>
-  <div class="menu">
-    <a href="#">Início</a>
-    <a href="#">Dias</a>
-    <a href="#">Projeto</a>
-    <a href="#">Contato</a>
+<body>
+
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<div class="side-menu" id="menu">
+  <h2>Menu</h2>
+  <a href="#">Início</a>
+  <a href="#">Rank 1: Músicas escutadas</a>
+  <a href="#">Rank 2: Artistas escutados</a>
+  <a href="#">Projeto</a>
+</div>
+
+<nav>
+  <div>PROJECT 01</div>
+</nav>
+
+<div class="hero">
+  <div class="contador-box">
+    <h1 id="contador">Dia 1</h1>
   </div>
-</nav><div class="hero">
-  <h1 id="contador">Dia 1</h1>
   <p>Criando um site com IA, sem saber nada de programação.</p>
-</div><script>
-  const startDate = new Date("2026-04-03");
-  const today = new Date();
+</div>
 
-  const diffTime = today - startDate;
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-  document.getElementById("contador").innerText = "Dia " + diffDays;
-</script><div class="section">
-  <h2>Sobre</h2>
-  <p>Esse projeto documenta a evolução diária de um site criado com ajuda de inteligência artificial.</p>
-</div></body>
+<script src="script.js"></script>
+</body>
 </html>
