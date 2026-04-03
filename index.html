@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Primeiro Site</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .card h2 {
+      margin-top: 0;
+    }
+    .button-container {
+      text-align: center;
+      margin: 40px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  Meu Primeiro Site
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Sobre mim</h2>
+    <p>Este é um site simples criado para aprender desenvolvimento web.</p>
+  </div>
+
+  <div class="card">
+    <h2>Projetos</h2>
+    <p>Em breve novos projetos serão adicionados aqui.</p>
+  </div>
+</div>
+
+<div class="button-container">
+  <button>Entrar em contato</button>
+</div>
+
+</body>
+</html>
