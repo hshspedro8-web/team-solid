@@ -1,39 +1,71 @@
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #0a0a0a;
   color: white;
 }
 
 nav {
-  padding: 15px;
+  padding: 20px;
   text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #222;
 }
 
 .menu-btn {
   position: fixed;
   left: 15px;
   top: 15px;
+  font-size: 24px;
   cursor: pointer;
+  z-index: 1100;
 }
 
+/* MENU LATERAL CORRIGIDO */
 .side-menu {
   position: fixed;
   left: -100%;
-  width: 65%;
+  width: 250px;
   height: 100%;
   background: #111;
-  padding: 20px;
-  transition: 0.3s;
+  padding: 60px 20px 20px 20px;
+  transition: 0.4s;
+  z-index: 1050;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.5);
 }
 
 .side-menu.active {
   left: 0;
 }
 
+.side-menu h2 {
+  color: #ba0000;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.side-menu a {
+  display: block; /* ESSENCIAL PARA A LISTA */
+  padding: 15px 10px;
+  color: #bbb;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  color: white;
+  background: #222;
+}
+
+/* CONTEÚDO */
 .aba {
   display: none;
   padding: 80px 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .ativa {
@@ -41,7 +73,53 @@ nav {
 }
 
 .contador-box {
-  border: 1px solid #333;
-  padding: 20px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  border: 1px solid #ba0000;
+  padding: 30px;
   text-align: center;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+/* DESIGN DE CARDS PARA O RANKING */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #1a1a1a;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid #ba0000;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #222;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ba0000;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff0000;
 }
