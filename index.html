@@ -1,75 +1,141 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Primeiro Site</title>
+  <title>Projeto IA</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 2.5em;
-      font-weight: bold;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 20px;
-    }
-    .card h2 {
-      margin-top: 0;
-    }
-    .button-container {
-      text-align: center;
-      margin: 40px 0;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #e5e5e5;
+}
+
+/* MENU */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #888;
+  font-size: 14px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: #fff;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  color: #777;
+  max-width: 500px;
+  margin-top: 10px;
+}
+
+/* SECTION */
+.section {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.section h2 {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.section p {
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: 2em;
+  }
+}
+
   </style>
 </head>
-<body>
-
-<header>
-  Meu Primeiro Site
-</header>
-
-<div class="container">
-  <div class="card">
-    <h2>Sobre mim</h2>
-    <p>Este é um site simples criado para aprender desenvolvimento web.</p>
+<body><nav>
+  <div class="logo">PROJECT 01</div>
+  <div class="menu">
+    <a href="#">Início</a>
+    <a href="#">Dias</a>
+    <a href="#">Projeto</a>
+    <a href="#">Contato</a>
   </div>
+</nav><div class="hero">
+  <h1 id="contador">Dia 1</h1>
+  <p>Criando um site com IA, sem saber nada de programação.</p>
+</div><script>
+  const startDate = new Date("2026-04-03");
+  const today = new Date();
 
-  <div class="card">
-    <h2>Projetos</h2>
-    <p>Em breve novos projetos serão adicionados aqui.</p>
-  </div>
-</div>
+  const diffTime = today - startDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-<div class="button-container">
-  <button>Entrar em contato</button>
-</div>
-
-</body>
+  document.getElementById("contador").innerText = "Dia " + diffDays;
+</script><div class="section">
+  <h2>Sobre</h2>
+  <p>Esse projeto documenta a evolução diária de um site criado com ajuda de inteligência artificial.</p>
+</div></body>
 </html>
