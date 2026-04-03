@@ -1,89 +1,98 @@
-// 1. Carrega os dados salvos ou usa os iniciais
-let usuarios = JSON.parse(localStorage.getItem('usuarios_lastfm')) || [
-  { nome: "Pedro", musicas: 1200, artistas: { "Arctic Monkeys": 300 } },
-  { nome: "Lucas", musicas: 900, artistas: { "Arctic Monkeys": 150 } }
-];
+// DADOS SIMULADOS (Enquanto não usamos a API)
+let bancoDeDados = {
+  artistas: [
+    { nome: "Arctic Monkeys", foto: "https://i.scdn.co/image/ab6761610000e5eb7da39dea0a72f581535fb11f", ouvintes: [
+      { nome: "Daniel", plays: 1250, foto: "" },
+      { nome: "Lucas", plays: 800, foto: "" }
+    ]},
+    { nome: "The Weeknd", foto: "https://i.scdn.co/image/ab6761610000e5ebc8b444e05707fdcb72691475", ouvintes: [
+      { nome: "Pedro", plays: 2100, foto: "" }
+    ]}
+  ]
+};
 
-function salvarNoNavegador() {
-  localStorage.setItem('usuarios_lastfm', JSON.stringify(usuarios));
-}
-
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
+// NAVEGAÇÃO
+function toggleMenu() { document.getElementById("menu").classList.toggle("active"); }
 
 function mostrar(id) {
-  document.querySelectorAll(".aba").forEach(sec => sec.classList.remove("ativa"));
+  document.querySelectorAll(".aba").forEach(aba => aba.classList.remove("ativa"));
   document.getElementById(id).classList.add("ativa");
-  
-  // Se o menu estiver aberto, ele fecha ao clicar na opção
-  const menu = document.getElementById("menu");
-  if(menu.classList.contains("active")) {
-    toggleMenu();
+  if(document.getElementById("menu").classList.contains("active")) toggleMenu();
+}
+
+// CONTADOR
+const diffDays = Math.floor((new Date() - new Date("2026-04-03"))/(1000*60*60*24)) + 1;
+document.getElementById("contador").innerText = "Dia " + diffDays;
+
+// BUSCA
+function buscar(tipo) {
+  if(tipo === 'artista') {
+    let termo = document.getElementById("input-artista").value.toLowerCase();
+    let grid = document.getElementById("resultados-artista");
+    grid.innerHTML = "";
+
+    let filtrados = bancoDeDados.artistas.filter(a => a.nome.toLowerCase().includes(termo));
+    
+    filtrados.forEach(art => {
+      let div = document.createElement("div");
+      div.className = "card-resultado";
+      div.innerHTML = `<img src="${art.foto}"><p>${art.nome}</p>`;
+      div.onclick = () => verDetalhes(art);
+      grid.appendChild(div);
+    });
   }
 }
 
-// Contador de dias
-const startDate = new Date("2026-04-03");
-const today = new Date();
-const diffDays = Math.floor((today - startDate)/(1000*60*60*24)) + 1;
-document.getElementById("contador").innerText = "Dia " + diffDays;
-
-// Atualizar Ranking de Músicas
-function atualizarRanking() {
-  let lista = document.getElementById("lista-musicas");
+// TELA DE DETALHES
+function verDetalhes(artista) {
+  document.getElementById("busca-artistas-tela").style.display = "none";
+  document.getElementById("detalhe-ranking").style.display = "block";
+  
+  document.getElementById("nome-foco").innerText = artista.nome;
+  document.getElementById("foto-foco").src = artista.foto;
+  
+  let lista = document.getElementById("lista-ranking-detalhado");
   lista.innerHTML = "";
-
-  usuarios.sort((a,b) => b.musicas - a.musicas);
-
-  usuarios.forEach(u => {
+  
+  artista.ouvintes.forEach(u => {
     let li = document.createElement("li");
-    li.innerHTML = `<span>${u.nome}</span> <strong>${u.musicas} plays</strong>`;
+    li.innerHTML = `<div class="mini-foto"></div> <div><b>${u.nome}</b><br><small>${u.plays} plays</small></div>`;
     lista.appendChild(li);
   });
 }
 
-// Busca de Artistas (Inteligente)
-function buscarArtista() {
-  let termoBusca = document.getElementById("busca").value.toLowerCase().trim();
-  let resultado = document.getElementById("resultado");
-  resultado.innerHTML = "";
-
-  if(termoBusca === "") return;
-
-  usuarios.forEach(u => {
-    // Procura o artista ignorando maiúsculas
-    for (let nomeArtista in u.artistas) {
-      if (nomeArtista.toLowerCase().includes(termoBusca)) {
-        let li = document.createElement("li");
-        li.innerHTML = `<span>${u.nome}</span> <span>${nomeArtista}: <b>${u.artistas[nomeArtista]}</b></span>`;
-        resultado.appendChild(li);
-      }
-    }
-  });
+function voltarParaBusca() {
+  document.getElementById("busca-artistas-tela").style.display = "block";
+  document.getElementById("detalhe-ranking").style.display = "none";
 }
 
-// Adicionar Usuário Real
+// PERFIL (LOCALSTORAGE)
 function adicionarUsuario() {
-  let input = document.getElementById("nomeUsuario");
-  let nome = input.value.trim();
+  let nome = document.getElementById("nomeUsuario").value;
+  let foto = document.getElementById("fotoUsuario").value || "https://via.placeholder.com/100";
 
-  if(nome === "") {
-    alert("Por favor, digite um nome.");
-    return;
-  }
+  if(!nome) return alert("Digite um nome!");
 
-  usuarios.push({
-    nome: nome,
-    musicas: Math.floor(Math.random()*2000),
-    artistas: { "Arctic Monkeys": Math.floor(Math.random()*500) }
-  });
-
-  salvarNoNavegador(); // Salva permanentemente no PC/Celular do usuário
-  atualizarRanking();
-  input.value = "";
-  alert("Usuário adicionado com sucesso!");
+  let perfil = { nome, foto };
+  localStorage.setItem('meuPerfil', JSON.stringify(perfil));
+  renderizarPerfil();
 }
 
-// Inicia o sistema
-atualizarRanking();
+function renderizarPerfil() {
+  let salvo = JSON.parse(localStorage.getItem('meuPerfil'));
+  if(salvo) {
+    document.getElementById("form-perfil").style.display = "none";
+    document.getElementById("dados-perfil").style.display = "block";
+    document.getElementById("nome-perfil-display").innerText = salvo.nome;
+    document.getElementById("img-perfil-display").src = salvo.foto;
+  }
+}
+
+function resetarPerfil() {
+  localStorage.removeItem('meuPerfil');
+  document.getElementById("form-perfil").style.display = "block";
+  document.getElementById("dados-perfil").style.display = "none";
+}
+
+// Iniciar
+renderizarPerfil();
