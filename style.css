@@ -82,3 +82,17 @@ li {
 /* PERFIL */
 .perfil-card-exibicao { text-align: center; background: #1a1a1a; padding: 30px; border-radius: 15px; }
 #img-perfil-display { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; object-fit: cover; }
+/* ... mantenha o que você já tinha e adicione/ajuste isso: */
+.contador-box h1 {
+  font-size: 2.5rem;
+  color: #ba0000;
+  margin: 0;
+}
+/* Estilo para fotos de usuários no ranking */
+.mini-foto {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #333;
+  object-fit: cover;
+}
