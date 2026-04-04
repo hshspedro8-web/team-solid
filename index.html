@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Last.fm Ranking Project</title>
+  <title>Last.fm Global Ranking</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,35 +13,25 @@
 <div class="side-menu" id="menu">
   <h2>Menu</h2>
   <a onclick="mostrar('home')">Início</a>
-  <a onclick="mostrar('rank-musicas')">Músicas</a>
   <a onclick="mostrar('rank-artistas')">Artistas</a>
   <a onclick="mostrar('perfil')">Meu Perfil</a>
 </div>
 
-<nav>PROJECT 01</nav>
+<nav>PROJECT 01 - GLOBAL</nav>
 
 <section id="home" class="aba ativa">
   <div class="contador-box">
-    <h1 id="contador">Dia 1</h1>
+    <h1 id="contador">Carregando...</h1>
   </div>
-  <p>Bem-vindo ao seu protótipo de Ranking!</p>
-</section>
-
-<section id="rank-musicas" class="aba">
-  <h2>Buscar Música</h2>
-  <div class="busca-container">
-    <input type="text" id="busca-musica" placeholder="Digite o nome da música...">
-    <button onclick="buscar('musica')">Pesquisar</button>
-  </div>
-  <div id="resultados-musica" class="grid-resultados"></div>
+  <p>Agora conectado à API Real e Banco de Dados!</p>
 </section>
 
 <section id="rank-artistas" class="aba">
   <div id="busca-artistas-tela">
-    <h2>Buscar Artista</h2>
+    <h2>Buscar Artista Real</h2>
     <div class="busca-container">
-      <input type="text" id="input-artista" placeholder="Ex: Arctic Monkeys, The Weeknd...">
-      <button onclick="buscar('artista')">Pesquisar</button>
+      <input type="text" id="input-artista" placeholder="Nome do artista...">
+      <button onclick="buscarNoLastFM()">Pesquisar</button>
     </div>
     <div id="resultados-artista" class="grid-resultados"></div>
   </div>
@@ -49,30 +39,31 @@
   <div id="detalhe-ranking" style="display:none">
     <button class="btn-voltar" onclick="voltarParaBusca()">← Voltar</button>
     <div class="header-artista">
-      <img id="foto-foco" src="" alt="Artista">
+      <img id="foto-foco" src="" alt="">
       <h1 id="nome-foco"></h1>
     </div>
     <hr class="divisor">
+    <h3 style="text-align:center">Ranking de Ouvintes no Site</h3>
     <ul id="lista-ranking-detalhado"></ul>
   </div>
 </section>
 
 <section id="perfil" class="aba">
   <div id="form-perfil">
-    <h2>Configurar Perfil</h2>
-    <input type="text" id="nomeUsuario" placeholder="Seu nome de usuário">
-    <input type="text" id="fotoUsuario" placeholder="Link de uma foto (URL)">
-    <button onclick="adicionarUsuario()">Criar Perfil</button>
+    <h2>Vincular Conta Last.fm</h2>
+    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Digite seu usuário do Last.fm para entrar no ranking.</p>
+    <input type="text" id="userLastFM" placeholder="Seu usuário do Last.fm">
+    <button onclick="salvarPerfilFirebase()">Vincular e Salvar</button>
   </div>
 
   <div id="dados-perfil" style="display:none" class="perfil-card-exibicao">
-    <h2>Seu Perfil</h2>
-    <img id="img-perfil-display" src="" alt="Sua Foto">
+    <img id="img-perfil-display" src="" alt="Foto">
     <h3 id="nome-perfil-display"></h3>
-    <button onclick="resetarPerfil()" style="background:#333; margin-top:20px;">Alterar Perfil</button>
+    <p id="total-scrobbles" style="color: #ba0000; font-weight: bold;"></p>
+    <button onclick="resetarPerfil()" style="background:#333; margin-top:20px;">Sair / Trocar</button>
   </div>
 </section>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
